@@ -16,12 +16,15 @@ namespace eLearnEnglish_ASP.Models
         public string Author { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
-        public string Category { get; set; }
+        [Display(Name = "Choose the genre of the music")]
+        [Required]
+        public string Genre { get; set; }
 
         [Display(Name = "Choose the cover photo of your book")]
-        [Required]
+
        // public IFormFile CoverPhoto { get; set; }
         public string CoverImageUrl { get; set; }
+        [Display(Name = "Choose the music URL")]
 
         public string MusicUrl { get; set; }
     }
