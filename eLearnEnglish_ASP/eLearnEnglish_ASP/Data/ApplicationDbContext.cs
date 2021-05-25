@@ -13,7 +13,11 @@ namespace eLearnEnglish_ASP.Data
             : base(options)
         {
         }
-        public DbSet<eLearnEnglish_ASP.Models.MusicModel> MusicModel { get; set; }
-        public DbSet<eLearnEnglish_ASP.Models.VideoModel> VideoModel { get; set; }
+        public DbSet<Music> Music { get; set; }
+        public DbSet<Video> Video { get; set; }
+
+        public DbSet<Word> Word { get; set; }
+        public DbSet<Vocabulary> Vocabulary { get; set; }
+        /*public IEnumerable<object> Word { get; internal set; }*/
     }
 }

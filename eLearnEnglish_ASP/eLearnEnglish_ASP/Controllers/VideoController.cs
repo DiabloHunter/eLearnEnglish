@@ -7,147 +7,91 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eLearnEnglish_ASP.Data;
 using eLearnEnglish_ASP.Models;
+using eLearnEnglish_ASP.Repository;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace eLearnEnglish_ASP.Controllers
 {
     public class VideoController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IVideoRepository _videoRepository = null;
+        private readonly IWebHostEnvironment _webHostEnvironment = null;
 
-        public VideoController(ApplicationDbContext context)
+        public VideoController(IVideoRepository videoRepository,
+            IWebHostEnvironment webHostEnvironment)
         {
-            _context = context;
+            _videoRepository = videoRepository;
+            _webHostEnvironment = webHostEnvironment;
+        }
+        [Route("~/all-video")]
+        public async Task<ViewResult> GetAllVideo()
+        {
+            var data = await _videoRepository.GetAllVideo();
+            return View(data);
+        }
+        [Route("~/video-datails/{id:int:min(1)}", Name = "videoDetailsRoute")]
+        public async Task<ViewResult> GetVideo(int id)
+        {
+
+            var data = await _videoRepository.GetVideoById(id);
+
+            return View(data);
         }
 
-        // GET: Video
-        public async Task<IActionResult> Index()
+        public List<VideoModel> SearchVideo(string title)
         {
-            return View(await _context.VideoModel.ToListAsync());
+            return _videoRepository.SearchVideo(title);
         }
-
-        // GET: Video/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [Authorize]
+        public async Task<ViewResult> AddNewVideo(bool isSuccess = false, int videoId = 0)
         {
-            if (id == null)
+            var model = new VideoModel();
+
+            //замена на уровне view
+            /*ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id","Name");*/
+
+            ViewBag.IsSuccess = isSuccess;
+            ViewBag.VideoId = videoId;
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddNewVideo(VideoModel videoModel)
+        {
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                if (videoModel.CoverPhoto != null)
+                {
+                    string folder = "video/cover/";
+                    videoModel.CoverImageUrl = await UploadImage(folder, videoModel.CoverPhoto);
+                }
+
+
+                int id = await _videoRepository.AddNewVideo(videoModel);
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(AddNewVideo), new { isSuccess = true, videoId = id });
+                }
             }
 
-            var videoModel = await _context.VideoModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (videoModel == null)
-            {
-                return NotFound();
-            }
+            //замена на уровне view
+            /* ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id", "Name");*/
 
-            return View(videoModel);
-        }
-
-        // GET: Video/Create
-        public IActionResult Create()
-        {
             return View();
         }
 
-        // POST: Video/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,CoverImageUrl,VideoUrl")] VideoModel videoModel)
+        private async Task<string> UploadImage(string folderPath, IFormFile file)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(videoModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(videoModel);
-        }
 
-        // GET: Video/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
 
-            var videoModel = await _context.VideoModel.FindAsync(id);
-            if (videoModel == null)
-            {
-                return NotFound();
-            }
-            return View(videoModel);
-        }
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
 
-        // POST: Video/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,CoverImageUrl,VideoUrl")] VideoModel videoModel)
-        {
-            if (id != videoModel.Id)
-            {
-                return NotFound();
-            }
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(videoModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!VideoModelExists(videoModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(videoModel);
-        }
-
-        // GET: Video/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var videoModel = await _context.VideoModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (videoModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(videoModel);
-        }
-
-        // POST: Video/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var videoModel = await _context.VideoModel.FindAsync(id);
-            _context.VideoModel.Remove(videoModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool VideoModelExists(int id)
-        {
-            return _context.VideoModel.Any(e => e.Id == id);
+            return "/" + folderPath;
         }
     }
 }

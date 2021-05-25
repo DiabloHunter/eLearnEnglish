@@ -11,6 +11,7 @@ namespace eLearnEnglish_ASP.Data
         public string Title { get; set; }
 
         public string Description { get; set; }
+        public string Difficulty { get; set; }
         public string CoverImageUrl { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eLearnEnglish_ASP.Repository
 {
-    public class VideoRepository
+    public class VideoRepository : IVideoRepository
     {
         private readonly ApplicationDbContext _context = null;
         private readonly IConfiguration _configuration;
@@ -27,9 +27,11 @@ namespace eLearnEnglish_ASP.Repository
                 CreatedOn = DateTime.UtcNow,
                 Description = model.Description,
                 Title = model.Title,
+                Difficulty = model.Difficulty,
                 UpdatedOn = DateTime.UtcNow,
                 CoverImageUrl = model.CoverImageUrl,
-                VideoUrl = model.VideoUrl
+                VideoUrl = model.VideoUrl,
+                
             };
 
 
@@ -42,13 +44,14 @@ namespace eLearnEnglish_ASP.Repository
         public async Task<List<VideoModel>> GetAllVideo()
         {
             return await _context.Video
-                  .Select(music => new VideoModel()
+                  .Select(video => new VideoModel()
                   {
-                      Description = music.Description,
-                      Id = music.Id,
-                      Title = music.Title,
-                      CoverImageUrl = music.CoverImageUrl,
-                      VideoUrl = music.VideoUrl
+                      Description = video.Description,
+                      Id = video.Id,
+                      Title = video.Title,
+                      Difficulty = video.Difficulty,
+                      CoverImageUrl = video.CoverImageUrl,
+                      VideoUrl = video.VideoUrl
 
                   }).ToListAsync();
         }
@@ -56,26 +59,28 @@ namespace eLearnEnglish_ASP.Repository
         public async Task<List<VideoModel>> GetTopVideoAsync(int count)
         {
             return await _context.Video
-                  .Select(music => new VideoModel()
+                  .Select(video => new VideoModel()
                   {
-                      Description = music.Description,
-                      Id = music.Id,
-                      Title = music.Title,
-                      CoverImageUrl = music.CoverImageUrl,
-                      VideoUrl = music.VideoUrl
+                      Description = video.Description,
+                      Id = video.Id,
+                      Title = video.Title,
+                      Difficulty = video.Difficulty,
+                      CoverImageUrl = video.CoverImageUrl,
+                      VideoUrl = video.VideoUrl
 
                   }).Take(count).ToListAsync();
         }
         public async Task<VideoModel> GetVideoById(int id)
         {
             return await _context.Video.Where(x => x.Id == id)
-                 .Select(music => new VideoModel()
+                 .Select(video => new VideoModel()
                  {
-                     Description = music.Description,
-                     Id = music.Id,
-                     Title = music.Title,
-                     CoverImageUrl = music.CoverImageUrl,
-                     VideoUrl = music.VideoUrl
+                     Description = video.Description,
+                     Id = video.Id,
+                     Title = video.Title,
+                     Difficulty = video.Difficulty,
+                     CoverImageUrl = video.CoverImageUrl,
+                     VideoUrl = video.VideoUrl
                  }).FirstOrDefaultAsync();
         }
         public List<VideoModel> SearchVideo(string title)

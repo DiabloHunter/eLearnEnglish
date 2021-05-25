@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,15 +11,18 @@ namespace eLearnEnglish_ASP.Models
     {
         public int Id { get; set; }
         [StringLength(100, MinimumLength = 5)]
-        [Required(ErrorMessage = "Please enter the name of the song")]
+        [Required(ErrorMessage = "Please enter the name of the videoc")]
         public string Title { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
-        [Display(Name = "Choose the cover photo of your book")]
-
-        // public IFormFile CoverPhoto { get; set; }
+        
+        [Display(Name = "Choose the difficulty of the video")]
+        public string Difficulty { get; set; }
+        [Display(Name = "Choose the cover photo of your video")]
+        [Required]
+        public IFormFile CoverPhoto { get; set; }
         public string CoverImageUrl { get; set; }
-        [Display(Name = "Choose the music URL")]
+        [Display(Name = "Choose the video URL")]
 
         public string VideoUrl { get; set; }
     }

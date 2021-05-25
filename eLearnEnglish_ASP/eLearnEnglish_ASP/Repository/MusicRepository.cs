@@ -28,6 +28,8 @@ namespace eLearnEnglish_ASP.Repository
                 CreatedOn = DateTime.UtcNow,
                 Description = model.Description,
                 Title = model.Title,
+                Genre = model.Genre,
+                Difficulty = model.Difficulty,
                 UpdatedOn = DateTime.UtcNow,
                 CoverImageUrl = model.CoverImageUrl,
                 MusicUrl = model.MusicUrl
@@ -46,8 +48,9 @@ namespace eLearnEnglish_ASP.Repository
                   .Select(music => new MusicModel()
                   {
                       Author = music.Author,
-                      Genre = music.Category,
+                      Genre = music.Genre,
                       Description = music.Description,
+                      Difficulty = music.Difficulty,
                       Id = music.Id,
                       Title = music.Title,
                       CoverImageUrl = music.CoverImageUrl,
@@ -62,8 +65,9 @@ namespace eLearnEnglish_ASP.Repository
                   .Select(music => new MusicModel()
                   {
                       Author = music.Author,
-                      Genre = music.Category,
+                      Genre = music.Genre,
                       Description = music.Description,
+                      Difficulty = music.Difficulty,
                       Id = music.Id,
                       Title = music.Title,
                       CoverImageUrl = music.CoverImageUrl,
@@ -77,8 +81,9 @@ namespace eLearnEnglish_ASP.Repository
                  .Select(music => new MusicModel()
                  {
                      Author = music.Author,
-                     Genre = music.Category,
+                     Genre = music.Genre,
                      Description = music.Description,
+                     Difficulty = music.Difficulty,
                      Id = music.Id,
                      Title = music.Title,
                      CoverImageUrl = music.CoverImageUrl,

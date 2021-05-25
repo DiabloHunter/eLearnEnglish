@@ -7,147 +7,92 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eLearnEnglish_ASP.Data;
 using eLearnEnglish_ASP.Models;
+using eLearnEnglish_ASP.Repository;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace eLearnEnglish_ASP.Controllers
 {
     public class MusicController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IMusicRepository _musicRepository = null;
+        private readonly IWebHostEnvironment _webHostEnvironment = null;
 
-        public MusicController(ApplicationDbContext context)
+        public MusicController(IMusicRepository musicRepository,
+            IWebHostEnvironment webHostEnvironment)
         {
-            _context = context;
+            _musicRepository = musicRepository;
+            _webHostEnvironment = webHostEnvironment;
+        }
+        [Route("~/all-music")]
+        public async Task<ViewResult> GetAllMusic()
+        {
+            var data = await _musicRepository.GetAllMusic();
+            return View(data);
+        }
+        [Route("~/music-datails/{id:int:min(1)}", Name = "musicDetailsRoute")]
+        public async Task<ViewResult> GetMusic(int id)
+        {
+
+            var data = await _musicRepository.GetMusicById(id);
+
+            return View(data);
         }
 
-        // GET: Music
-        public async Task<IActionResult> Index()
+        public List<MusicModel> SearchMusic(string musicName, string authorName)
         {
-            return View(await _context.MusicModel.ToListAsync());
+            return _musicRepository.SearchMusic(musicName, authorName);
         }
-
-        // GET: Music/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [Authorize]
+        public async Task<ViewResult> AddNewMusic(bool isSuccess = false, int musicId = 0)
         {
-            if (id == null)
+            var model = new MusicModel();
+
+            //замена на уровне view
+            /*ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id","Name");*/
+
+            ViewBag.IsSuccess = isSuccess;
+            ViewBag.MusicId = musicId;
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddNewMusic(MusicModel musicModel)
+        {
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                if (musicModel.CoverPhoto != null)
+                {
+                    string folder = "music/cover/";
+                    musicModel.CoverImageUrl = await UploadImage(folder, musicModel.CoverPhoto);
+                }
+
+
+                int id = await _musicRepository.AddNewMusic(musicModel);
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(AddNewMusic), new { isSuccess = true, musicId = id });
+                }
             }
 
-            var musicModel = await _context.MusicModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (musicModel == null)
-            {
-                return NotFound();
-            }
+            //замена на уровне view
+            /* ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id", "Name");*/
 
-            return View(musicModel);
-        }
-
-        // GET: Music/Create
-        public IActionResult Create()
-        {
             return View();
         }
 
-        // POST: Music/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Author,Description,Category,CoverImageUrl,MusicUrl")] MusicModel musicModel)
+        private async Task<string> UploadImage(string folderPath, IFormFile file)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(musicModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(musicModel);
+
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+            return "/" + folderPath;
         }
 
-        // GET: Music/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var musicModel = await _context.MusicModel.FindAsync(id);
-            if (musicModel == null)
-            {
-                return NotFound();
-            }
-            return View(musicModel);
-        }
-
-        // POST: Music/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Author,Description,Category,CoverImageUrl,MusicUrl")] MusicModel musicModel)
-        {
-            if (id != musicModel.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(musicModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MusicModelExists(musicModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(musicModel);
-        }
-
-        // GET: Music/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var musicModel = await _context.MusicModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (musicModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(musicModel);
-        }
-
-        // POST: Music/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var musicModel = await _context.MusicModel.FindAsync(id);
-            _context.MusicModel.Remove(musicModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool MusicModelExists(int id)
-        {
-            return _context.MusicModel.Any(e => e.Id == id);
-        }
     }
 }
