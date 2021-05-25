@@ -1,5 +1,6 @@
 ﻿using eLearnEnglish_ASP.Data;
 using eLearnEnglish_ASP.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,15 @@ namespace eLearnEnglish_ASP.Repository
             _context = context;
         }
 
-        public async Task<List<WordModel>> GetLanguages()
+        public async Task<List<WordModel>> GetWord()
         {
             return await _context.Word.Select(x => new WordModel()
             {
                 Id = x.Id,
-                Description = x.Description,
-                Name = x.Name
+                Exprassion = x.Exprassion,
+                WordTranslation = x.WordTranslation,
+                Example = x.Example,
+                ExampleTranslation = x.ExampleTranslation
             }).ToListAsync();
         }
     }
