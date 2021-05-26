@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using eLearnEnglish_ASP.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,17 @@ namespace eLearnEnglish_ASP.Data
 
         public int WordId49 { get; set; }
         public int WordId50 { get; set; }
-        public ICollection<IdentityUser> User { get; set; }
+        public int WordId51 { get; set; }
+        public int WordId52 { get; set; }
+        public int WordId53 { get; set; }
+        public int WordId54 { get; set; }
+        public int WordId55 { get; set; }
+        public int WordId56 { get; set; }
+        public int WordId57 { get; set; }
+        public int WordId58 { get; set; }
+    
+        public int WordId59 { get; set; }
+        public int WordId60 { get; set; }
+        public ICollection<ApplicationUser> User { get; set; }
     }
 }
