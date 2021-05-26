@@ -165,3 +165,4 @@ D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\n
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Video\_videoThumbnail.cshtml.g.cs
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Music\GetMusic.cshtml.g.cs
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Video\GetVideo.cshtml.g.cs
+D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Home\AllCources.cshtml.g.cs

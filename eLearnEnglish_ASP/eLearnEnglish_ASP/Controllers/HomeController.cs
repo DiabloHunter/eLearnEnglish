@@ -22,6 +22,10 @@ namespace eLearnEnglish_ASP.Controllers
         {
             return View();
         }
+        public IActionResult AllCources()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
