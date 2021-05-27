@@ -10,7 +10,7 @@ using eLearnEnglish_ASP.Data;
 namespace eLearnEnglish_ASP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210526193536_addfirst")]
+    [Migration("20210527152427_addfirst")]
     partial class addfirst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,6 +156,21 @@ namespace eLearnEnglish_ASP.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("VocabularyWord", b =>
+                {
+                    b.Property<int>("VocabularyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WordsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VocabularyId", "WordsId");
+
+                    b.HasIndex("WordsId");
+
+                    b.ToTable("VocabularyWord");
+                });
+
             modelBuilder.Entity("eLearnEnglish_ASP.Data.Music", b =>
                 {
                     b.Property<int>("Id")
@@ -235,192 +250,10 @@ namespace eLearnEnglish_ASP.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("WordId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId10")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId11")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId12")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId13")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId14")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId15")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId16")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId17")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId18")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId19")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId2")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId20")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId21")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId22")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId23")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId24")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId25")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId26")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId27")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId28")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId29")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId3")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId30")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId31")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId32")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId33")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId34")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId35")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId36")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId37")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId38")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId39")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId4")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId40")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId41")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId42")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId43")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId44")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId45")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId46")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId47")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId48")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId49")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId5")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId50")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId51")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId52")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId53")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId54")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId55")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId56")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId57")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId58")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId59")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId6")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId60")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId7")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId8")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId9")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("WordId");
 
                     b.ToTable("Vocabulary");
                 });
@@ -520,7 +353,8 @@ namespace eLearnEnglish_ASP.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("VocabularyId");
+                    b.HasIndex("VocabularyId")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers");
                 });
@@ -576,30 +410,33 @@ namespace eLearnEnglish_ASP.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("eLearnEnglish_ASP.Data.Vocabulary", b =>
+            modelBuilder.Entity("VocabularyWord", b =>
                 {
+                    b.HasOne("eLearnEnglish_ASP.Data.Vocabulary", null)
+                        .WithMany()
+                        .HasForeignKey("VocabularyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("eLearnEnglish_ASP.Data.Word", null)
-                        .WithMany("Vocabulary")
-                        .HasForeignKey("WordId");
+                        .WithMany()
+                        .HasForeignKey("WordsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("eLearnEnglish_ASP.Models.ApplicationUser", b =>
                 {
                     b.HasOne("eLearnEnglish_ASP.Data.Vocabulary", null)
-                        .WithMany("User")
-                        .HasForeignKey("VocabularyId")
+                        .WithOne("ApplicationUser")
+                        .HasForeignKey("eLearnEnglish_ASP.Models.ApplicationUser", "VocabularyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("eLearnEnglish_ASP.Data.Vocabulary", b =>
                 {
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("eLearnEnglish_ASP.Data.Word", b =>
-                {
-                    b.Navigation("Vocabulary");
+                    b.Navigation("ApplicationUser");
                 });
 #pragma warning restore 612, 618
         }

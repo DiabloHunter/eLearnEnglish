@@ -62,6 +62,19 @@ namespace eLearnEnglish_ASP.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Vocabulary",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vocabulary", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Word",
                 columns: table => new
                 {
@@ -99,85 +112,6 @@ namespace eLearnEnglish_ASP.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vocabulary",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WordId1 = table.Column<int>(type: "int", nullable: false),
-                    WordId2 = table.Column<int>(type: "int", nullable: false),
-                    WordId3 = table.Column<int>(type: "int", nullable: false),
-                    WordId4 = table.Column<int>(type: "int", nullable: false),
-                    WordId5 = table.Column<int>(type: "int", nullable: false),
-                    WordId6 = table.Column<int>(type: "int", nullable: false),
-                    WordId7 = table.Column<int>(type: "int", nullable: false),
-                    WordId8 = table.Column<int>(type: "int", nullable: false),
-                    WordId9 = table.Column<int>(type: "int", nullable: false),
-                    WordId10 = table.Column<int>(type: "int", nullable: false),
-                    WordId11 = table.Column<int>(type: "int", nullable: false),
-                    WordId12 = table.Column<int>(type: "int", nullable: false),
-                    WordId13 = table.Column<int>(type: "int", nullable: false),
-                    WordId14 = table.Column<int>(type: "int", nullable: false),
-                    WordId15 = table.Column<int>(type: "int", nullable: false),
-                    WordId16 = table.Column<int>(type: "int", nullable: false),
-                    WordId17 = table.Column<int>(type: "int", nullable: false),
-                    WordId18 = table.Column<int>(type: "int", nullable: false),
-                    WordId19 = table.Column<int>(type: "int", nullable: false),
-                    WordId20 = table.Column<int>(type: "int", nullable: false),
-                    WordId21 = table.Column<int>(type: "int", nullable: false),
-                    WordId22 = table.Column<int>(type: "int", nullable: false),
-                    WordId23 = table.Column<int>(type: "int", nullable: false),
-                    WordId24 = table.Column<int>(type: "int", nullable: false),
-                    WordId25 = table.Column<int>(type: "int", nullable: false),
-                    WordId26 = table.Column<int>(type: "int", nullable: false),
-                    WordId27 = table.Column<int>(type: "int", nullable: false),
-                    WordId28 = table.Column<int>(type: "int", nullable: false),
-                    WordId29 = table.Column<int>(type: "int", nullable: false),
-                    WordId30 = table.Column<int>(type: "int", nullable: false),
-                    WordId31 = table.Column<int>(type: "int", nullable: false),
-                    WordId32 = table.Column<int>(type: "int", nullable: false),
-                    WordId33 = table.Column<int>(type: "int", nullable: false),
-                    WordId34 = table.Column<int>(type: "int", nullable: false),
-                    WordId35 = table.Column<int>(type: "int", nullable: false),
-                    WordId36 = table.Column<int>(type: "int", nullable: false),
-                    WordId37 = table.Column<int>(type: "int", nullable: false),
-                    WordId38 = table.Column<int>(type: "int", nullable: false),
-                    WordId39 = table.Column<int>(type: "int", nullable: false),
-                    WordId40 = table.Column<int>(type: "int", nullable: false),
-                    WordId41 = table.Column<int>(type: "int", nullable: false),
-                    WordId42 = table.Column<int>(type: "int", nullable: false),
-                    WordId43 = table.Column<int>(type: "int", nullable: false),
-                    WordId44 = table.Column<int>(type: "int", nullable: false),
-                    WordId45 = table.Column<int>(type: "int", nullable: false),
-                    WordId46 = table.Column<int>(type: "int", nullable: false),
-                    WordId47 = table.Column<int>(type: "int", nullable: false),
-                    WordId48 = table.Column<int>(type: "int", nullable: false),
-                    WordId49 = table.Column<int>(type: "int", nullable: false),
-                    WordId50 = table.Column<int>(type: "int", nullable: false),
-                    WordId51 = table.Column<int>(type: "int", nullable: false),
-                    WordId52 = table.Column<int>(type: "int", nullable: false),
-                    WordId53 = table.Column<int>(type: "int", nullable: false),
-                    WordId54 = table.Column<int>(type: "int", nullable: false),
-                    WordId55 = table.Column<int>(type: "int", nullable: false),
-                    WordId56 = table.Column<int>(type: "int", nullable: false),
-                    WordId57 = table.Column<int>(type: "int", nullable: false),
-                    WordId58 = table.Column<int>(type: "int", nullable: false),
-                    WordId59 = table.Column<int>(type: "int", nullable: false),
-                    WordId60 = table.Column<int>(type: "int", nullable: false),
-                    WordId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Vocabulary", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Vocabulary_Word_WordId",
-                        column: x => x.WordId,
-                        principalTable: "Word",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -207,6 +141,30 @@ namespace eLearnEnglish_ASP.Data.Migrations
                         name: "FK_AspNetUsers_Vocabulary_VocabularyId",
                         column: x => x.VocabularyId,
                         principalTable: "Vocabulary",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VocabularyWord",
+                columns: table => new
+                {
+                    VocabularyId = table.Column<int>(type: "int", nullable: false),
+                    WordsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VocabularyWord", x => new { x.VocabularyId, x.WordsId });
+                    table.ForeignKey(
+                        name: "FK_VocabularyWord_Vocabulary_VocabularyId",
+                        column: x => x.VocabularyId,
+                        principalTable: "Vocabulary",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VocabularyWord_Word_WordsId",
+                        column: x => x.WordsId,
+                        principalTable: "Word",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -331,7 +289,8 @@ namespace eLearnEnglish_ASP.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_VocabularyId",
                 table: "AspNetUsers",
-                column: "VocabularyId");
+                column: "VocabularyId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -341,9 +300,9 @@ namespace eLearnEnglish_ASP.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vocabulary_WordId",
-                table: "Vocabulary",
-                column: "WordId");
+                name: "IX_VocabularyWord_WordsId",
+                table: "VocabularyWord",
+                column: "WordsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -370,16 +329,19 @@ namespace eLearnEnglish_ASP.Data.Migrations
                 name: "Video");
 
             migrationBuilder.DropTable(
+                name: "VocabularyWord");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Vocabulary");
+                name: "Word");
 
             migrationBuilder.DropTable(
-                name: "Word");
+                name: "Vocabulary");
         }
     }
 }
