@@ -10,7 +10,7 @@ using eLearnEnglish_ASP.Data;
 namespace eLearnEnglish_ASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210528110102_addfirst")]
+    [Migration("20210528130640_addfirst")]
     partial class addfirst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

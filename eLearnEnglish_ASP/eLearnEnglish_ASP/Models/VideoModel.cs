@@ -13,6 +13,10 @@ namespace eLearnEnglish_ASP.Models
         [StringLength(100, MinimumLength = 5)]
         [Required(ErrorMessage = "Please enter the name of the videoc")]
         public string Title { get; set; }
+
+        [Required(ErrorMessage = "Please enter the author name")]
+        public string Author { get; set; }
+
         [StringLength(500)]
         public string Description { get; set; }
         
