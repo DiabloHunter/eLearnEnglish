@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eLearnEnglish_ASP.Data;
 
-namespace eLearnEnglish_ASP.Data.Migrations
+namespace eLearnEnglish_ASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210528110102_addfirst")]
+    partial class addfirst
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,9 +250,6 @@ namespace eLearnEnglish_ASP.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Vocabulary");
@@ -338,7 +337,7 @@ namespace eLearnEnglish_ASP.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("VocabularyId")
+                    b.Property<int?>("VocabularyId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -352,7 +351,8 @@ namespace eLearnEnglish_ASP.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.HasIndex("VocabularyId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[VocabularyId] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -425,11 +425,11 @@ namespace eLearnEnglish_ASP.Data.Migrations
 
             modelBuilder.Entity("eLearnEnglish_ASP.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("eLearnEnglish_ASP.Data.Vocabulary", null)
+                    b.HasOne("eLearnEnglish_ASP.Data.Vocabulary", "Vocabulary")
                         .WithOne("ApplicationUser")
-                        .HasForeignKey("eLearnEnglish_ASP.Models.ApplicationUser", "VocabularyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("eLearnEnglish_ASP.Models.ApplicationUser", "VocabularyId");
+
+                    b.Navigation("Vocabulary");
                 });
 
             modelBuilder.Entity("eLearnEnglish_ASP.Data.Vocabulary", b =>

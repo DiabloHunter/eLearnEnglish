@@ -10,12 +10,11 @@ namespace eLearnEnglish_ASP.Data
     public class Vocabulary
     {
         public int Id { get; set; }
-        public List<Word> Words { get; set; }
+        public ICollection<Word> Words { get; set; }
         public Vocabulary()
         {
             Words = new List<Word>();
         }
-        public int UserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
     }

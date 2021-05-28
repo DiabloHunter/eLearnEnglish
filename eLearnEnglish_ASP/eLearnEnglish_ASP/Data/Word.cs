@@ -13,5 +13,9 @@ namespace eLearnEnglish_ASP.Data
         public string Example { get; set; }
         public string ExampleTranslation { get; set; }
         public ICollection<Vocabulary> Vocabulary { get; set; }
+        public Word()
+        {
+            Vocabulary = new List<Vocabulary>();
+        }
     }
 }

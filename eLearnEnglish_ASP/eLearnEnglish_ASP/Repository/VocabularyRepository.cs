@@ -21,8 +21,7 @@ namespace eLearnEnglish_ASP.Repository
             var words = _context.Vocabulary.Include(p => p.Id);
             return await _context.Vocabulary.Select(x => new VocabularyModel()
             {
-                Id = x.Id,
-                UserId = x.UserId
+                Id = x.Id
 
             }).ToListAsync();
         }

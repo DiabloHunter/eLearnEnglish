@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using eLearnEnglish_ASP.Data;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace eLearnEnglish_ASP.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int VocabularyId { get; set; }
+        public int? VocabularyId { get; set; }
+
+        public Vocabulary Vocabulary { get; set; }
     }
 }
