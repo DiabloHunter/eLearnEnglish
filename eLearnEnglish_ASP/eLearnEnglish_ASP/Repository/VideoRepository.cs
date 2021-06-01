@@ -83,6 +83,24 @@ namespace eLearnEnglish_ASP.Repository
                      VideoUrl = video.VideoUrl
                  }).FirstOrDefaultAsync();
         }
+
+
+        public async Task<List<VideoModel>> GetDownVideoAsync(string difficulty)
+        {
+            return await _context.Video.Where(x => x.Difficulty == difficulty)
+                  .Select(video => new VideoModel()
+                  {
+                      Description = video.Description,
+                      Id = video.Id,
+                      Title = video.Title,
+                      Difficulty = video.Difficulty,
+                      CoverImageUrl = video.CoverImageUrl,
+                      VideoUrl = video.VideoUrl
+
+                  }).Take(6).ToListAsync();
+        }
+
+
         public List<VideoModel> SearchVideo(string title)
         {
             return null;

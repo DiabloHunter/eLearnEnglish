@@ -13,5 +13,11 @@ namespace eLearnEnglish_ASP.Models
         public string Example { get; set; }
         public string ExampleTranslation { get; set; }
 
+        public string Difficulty { get; set; }
+
+        public string Wrong1 { get; set; }
+        public string Wrong2 { get; set; }
+        public string Wrong3 { get; set; }
+
     }
 }

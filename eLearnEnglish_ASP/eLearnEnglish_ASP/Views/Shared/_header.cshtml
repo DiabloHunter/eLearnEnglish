@@ -24,8 +24,28 @@
                            Test
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Word</a>
-                            <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Sentence</a>
+                            <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Word
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Pre-Intermediate</a>
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Intermediate</a>
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Upper-Intermediate</a>
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Advanced</a>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Sentence
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Pre-Intermediate</a>
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Intermediate</a>
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Upper-Intermediate</a>
+                                    <a class="dropdown-item" asp-action="AllCources" asp-controller="Home">Advanced</a>
+                                </div>
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item">

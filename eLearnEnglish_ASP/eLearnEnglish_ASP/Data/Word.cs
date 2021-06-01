@@ -12,6 +12,11 @@ namespace eLearnEnglish_ASP.Data
         public string WordTranslation { get; set; }
         public string Example { get; set; }
         public string ExampleTranslation { get; set; }
+        public string Difficulty { get; set; }
+        public string Wrong1 { get; set; }
+        public string Wrong2 { get; set; }
+        public string Wrong3 { get; set; }
+
         public ICollection<Vocabulary> Vocabulary { get; set; }
         public Word()
         {
