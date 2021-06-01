@@ -70,8 +70,10 @@ namespace eLearnEnglish_ASP.Repository
 
                   }).Take(count).ToListAsync();
         }
+        int VideoId;
         public async Task<VideoModel> GetVideoById(int id)
         {
+            VideoId = id;
             return await _context.Video.Where(x => x.Id == id)
                  .Select(video => new VideoModel()
                  {
@@ -84,10 +86,9 @@ namespace eLearnEnglish_ASP.Repository
                  }).FirstOrDefaultAsync();
         }
 
-
         public async Task<List<VideoModel>> GetDownVideoAsync(string difficulty, int count)
         {
-            return await _context.Video.Where(x => x.Difficulty == difficulty)
+            return await _context.Video.Where(x => x.Difficulty == difficulty && x.Id != VideoId)
                   .Select(video => new VideoModel()
                   {
                       Description = video.Description,

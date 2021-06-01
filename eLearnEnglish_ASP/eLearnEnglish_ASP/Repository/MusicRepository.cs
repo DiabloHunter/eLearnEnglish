@@ -75,8 +75,10 @@ namespace eLearnEnglish_ASP.Repository
 
                   }).Take(count).ToListAsync();
         }
+        int MusicId;
         public async Task<MusicModel> GetMusicById(int id)
         {
+            MusicId = id;
             return await _context.Music.Where(x => x.Id == id)
                  .Select(music => new MusicModel()
                  {
@@ -94,7 +96,7 @@ namespace eLearnEnglish_ASP.Repository
 
         public async Task<List<MusicModel>> GetDownMusicAsync(string difficulty, int count)
         {
-            return await _context.Music.Where(x => x.Difficulty == difficulty)
+            return await _context.Music.Where(x => x.Difficulty == difficulty && x.Id!= MusicId)
                   .Select(music => new MusicModel()
                   {
                       Author = music.Author,
