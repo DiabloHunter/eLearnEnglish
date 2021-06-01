@@ -1,18 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Welcome to eLearnEnglish</h1>
+
+        <p class="lead text-muted">
+
+            Some text here.
+            And here/
+        </p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Search books</a>
+        </p>
+
+    </div>
+</section>
 
 
 <div class="py-5 bg-light">
     <div class="container">
-
-
-        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 1 })
-        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 1 })
-        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 1 })
+        <h1>Popular music</h1>
+        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 3 })
 
         @*<vc:top-books count="3"></vc:top-books>*@
 
@@ -23,13 +32,11 @@
 <div class="py-5 bg-light">
 
     <div class="container">
-
-
-        @await Component.InvokeAsync("DownVideo", new { difficulty = "2", count = 1 })
-        @await Component.InvokeAsync("DownVideo", new { difficulty = "", count = 1 })
-        @await Component.InvokeAsync("DownVideo", new { difficulty = "3", count = 1 })
-
+        <h1>Popular video</h1>
+        @await Component.InvokeAsync("DownVideo", new { difficulty = "2", count = 3 })
         @*<vc:top-books count="3"></vc:top-books>*@
 
     </div>
 </div>
+
+
