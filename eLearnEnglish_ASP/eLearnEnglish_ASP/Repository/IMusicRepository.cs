@@ -12,5 +12,6 @@ namespace eLearnEnglish_ASP.Repository
         Task<MusicModel> GetMusicById(int id);
         Task<List<MusicModel>> GetTopMusicAsync(int count);
         List<MusicModel> SearchMusic(string title, string author);
+        Task<List<MusicModel>> GetDownMusicAsync(string difficulty);
     }
 }

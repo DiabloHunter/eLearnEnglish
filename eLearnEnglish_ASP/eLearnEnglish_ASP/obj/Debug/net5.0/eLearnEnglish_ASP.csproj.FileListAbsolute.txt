@@ -335,3 +335,4 @@ D:\projects\C#\ASP\Copied\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\e
 D:\projects\C#\ASP\Copied\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\eLearnEnglish_ASP.genruntimeconfig.cache
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Word\WordTest.cshtml.g.cs
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Shared\Components\DownVideo\Default.cshtml.g.cs
+D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Shared\Components\DownMusic\Default.cshtml.g.cs

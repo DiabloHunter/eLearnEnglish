@@ -90,6 +90,27 @@ namespace eLearnEnglish_ASP.Repository
                      MusicUrl = music.MusicUrl
                  }).FirstOrDefaultAsync();
         }
+
+
+        public async Task<List<MusicModel>> GetDownMusicAsync(string difficulty)
+        {
+            return await _context.Music.Where(x => x.Difficulty == difficulty)
+                  .Select(music => new MusicModel()
+                  {
+                      Author = music.Author,
+                      Genre = music.Genre,
+                      Description = music.Description,
+                      Difficulty = music.Difficulty,
+                      Id = music.Id,
+                      Title = music.Title,
+                      CoverImageUrl = music.CoverImageUrl,
+                      MusicUrl = music.MusicUrl
+
+                  }).Take(6).ToListAsync();
+        }
+
+
+
         public List<MusicModel> SearchMusic(string title, string author)
         {
             return null;
