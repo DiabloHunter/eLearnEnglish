@@ -63,7 +63,7 @@
     <div class="container">
 
 
-        @await Component.InvokeAsync("DownVideo", new { count = 6 })
+        @await Component.InvokeAsync("DownVideo", new { difficulty = Model.Difficulty })
 
         @*<vc:top-books count="3"></vc:top-books>*@
 

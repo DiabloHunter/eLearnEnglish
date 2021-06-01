@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eLearnEnglish_ASP.Components
 {
-    public class DownVideoViewComponent
+    public class DownVideoViewComponent : ViewComponent
     {
         private readonly IVideoRepository _videoRepository;
 
