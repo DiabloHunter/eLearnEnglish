@@ -1,7 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+</div>
+
+
+<div class="py-5 bg-light">
+    <div class="container">
+
+
+        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 1 })
+        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 1 })
+        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 1 })
+
+        @*<vc:top-books count="3"></vc:top-books>*@
+
+    </div>
+</div>
+
+
+<div class="py-5 bg-light">
+
+    <div class="container">
+
+
+        @await Component.InvokeAsync("DownVideo", new { difficulty = "2", count = 1 })
+        @await Component.InvokeAsync("DownVideo", new { difficulty = "", count = 1 })
+        @await Component.InvokeAsync("DownVideo", new { difficulty = "3", count = 1 })
+
+        @*<vc:top-books count="3"></vc:top-books>*@
+
+    </div>
 </div>

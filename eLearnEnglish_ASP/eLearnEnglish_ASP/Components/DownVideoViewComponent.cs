@@ -17,9 +17,9 @@ namespace eLearnEnglish_ASP.Components
         {
             _videoRepository = videoRepository;
         }
-        public async Task<IViewComponentResult> InvokeAsync(string difficulty)
+        public async Task<IViewComponentResult> InvokeAsync(string difficulty, int count)
         {
-            var videos = await _videoRepository.GetDownVideoAsync(difficulty);
+            var videos = await _videoRepository.GetDownVideoAsync(difficulty, count);
             return View(videos);
         }
     }

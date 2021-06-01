@@ -85,7 +85,7 @@ namespace eLearnEnglish_ASP.Repository
         }
 
 
-        public async Task<List<VideoModel>> GetDownVideoAsync(string difficulty)
+        public async Task<List<VideoModel>> GetDownVideoAsync(string difficulty, int count)
         {
             return await _context.Video.Where(x => x.Difficulty == difficulty)
                   .Select(video => new VideoModel()
@@ -97,7 +97,7 @@ namespace eLearnEnglish_ASP.Repository
                       CoverImageUrl = video.CoverImageUrl,
                       VideoUrl = video.VideoUrl
 
-                  }).Take(6).ToListAsync();
+                  }).Take(count).ToListAsync();
         }
 
 

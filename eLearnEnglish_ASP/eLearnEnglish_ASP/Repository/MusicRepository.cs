@@ -92,7 +92,7 @@ namespace eLearnEnglish_ASP.Repository
         }
 
 
-        public async Task<List<MusicModel>> GetDownMusicAsync(string difficulty)
+        public async Task<List<MusicModel>> GetDownMusicAsync(string difficulty, int count)
         {
             return await _context.Music.Where(x => x.Difficulty == difficulty)
                   .Select(music => new MusicModel()
@@ -106,7 +106,7 @@ namespace eLearnEnglish_ASP.Repository
                       CoverImageUrl = music.CoverImageUrl,
                       MusicUrl = music.MusicUrl
 
-                  }).Take(6).ToListAsync();
+                  }).Take(count).ToListAsync();
         }
 
 
