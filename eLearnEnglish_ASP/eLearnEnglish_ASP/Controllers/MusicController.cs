@@ -64,7 +64,7 @@ namespace eLearnEnglish_ASP.Controllers
             {
                 if (musicModel.CoverPhoto != null)
                 {
-                    string folder = "music/cover/";
+                    string folder = "images/music/";
                     musicModel.CoverImageUrl = await UploadImage(folder, musicModel.CoverPhoto);
                 }
 

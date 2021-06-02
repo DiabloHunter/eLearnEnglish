@@ -1,27 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Edit  video";
+﻿
+@inject eLearnEnglish_ASP.Repository.IVideoRepository _videoRepo
+@{
+    ViewData["Title"] = "Edit video";
 }
 @model VideoModel
 
 
-
 <div class="container">
     <h3 class="display-4">Edit video</h3>
-    
+
 
     <form method="post" enctype="multipart/form-data" asp-action="EditVideo" asp-controller="Video">
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <select asp-for="Title" class="form-control" asp-items=" (await _videoRepo.GetVideo())
+        .Select(x=>new SelectListItem() { Text = x.Title, Value = x.Id.ToString() })">
+                <option value="">Please choose the title of video</option>
 
+            </select>
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
 
         <div class="form-group">
             <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
+            <input asp-for="Title" class="form-control" value="@Model.Title" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Author"></label>
-            <input asp-for="Author" class="form-control" />
+            <label asp-for="Author">Model.Author</label>
+            <input asp-for="Author" class="form-control" value="@Model.Author" />
             <span asp-validation-for="Author" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -31,20 +40,20 @@
         </div>
         <div class="form-group">
             <label asp-for="Difficulty"></label>
-            <input asp-for="Difficulty" class="form-control" />
+            <input asp-for="Difficulty" class="form-control" value="@Model.Difficulty" />
             <span asp-validation-for="Difficulty" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="CoverPhoto"></label>
             <div class="custom-file">
                 <input asp-for="CoverPhoto" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
+                <label class="custom-file-label" for="customFile">@Model.CoverPhoto</label>
             </div>
             <span asp-validation-for="CoverPhoto" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="VideoUrl"></label>
-            <input asp-for="VideoUrl" class="form-control" />
+            <input asp-for="VideoUrl" class="form-control" value="@Model.VideoUrl" />
             <span asp-validation-for="VideoUrl" class="text-danger"></span>
         </div>
         <div class="form-group">

@@ -13,5 +13,7 @@ namespace eLearnEnglish_ASP.Repository
         Task<VideoModel> GetVideoById(int id);
         List<VideoModel> SearchVideo(string title);
         Task<List<VideoModel>> GetDownVideoAsync(string difficulty, int count);
+        Task<int> EditVideo(VideoModel model);
+        Task<List<VideoModel>> GetVideo();
     }
 }

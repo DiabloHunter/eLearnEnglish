@@ -25,7 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Test\" />
+    <Folder Include="wwwroot\images\music\" />
+    <Folder Include="wwwroot\images\video\" />
     <Folder Include="wwwroot\music\cover\" />
   </ItemGroup>
 

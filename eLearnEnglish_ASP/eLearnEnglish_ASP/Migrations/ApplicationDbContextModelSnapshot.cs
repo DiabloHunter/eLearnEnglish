@@ -215,6 +215,9 @@ namespace eLearnEnglish_ASP.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CoverImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -260,6 +263,9 @@ namespace eLearnEnglish_ASP.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Difficulty")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Example")
                         .HasColumnType("nvarchar(max)");
 
@@ -270,6 +276,15 @@ namespace eLearnEnglish_ASP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WordTranslation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wrong1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wrong2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wrong3")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

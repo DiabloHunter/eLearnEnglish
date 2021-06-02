@@ -43,25 +43,8 @@ namespace eLearnEnglish_ASP.Controllers
             return View(data);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> EditVideo(string title="2")
-        {
-            if (title != null)
-            {
-                Video video = await _context.Video.FirstOrDefaultAsync(p => p.Title == title);
-                if (video != null)
-                    return View(video);
-            }
-            return NotFound();
-        }
-        [HttpPost]
-        public async Task<IActionResult> EditVideo(Video video)
-        {
-            _context.Video.Update(video);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
 
+ 
 
         public List<VideoModel> SearchVideo(string title)
         {
@@ -70,10 +53,6 @@ namespace eLearnEnglish_ASP.Controllers
         public Task<ViewResult> AddNewVideo(bool isSuccess = false, int videoId = 5)
         {
             var model = new VideoModel();
-
-            //замена на уровне view
-            /*ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id","Name");*/
-
             ViewBag.IsSuccess = isSuccess;
             ViewBag.NewVideoId = videoId;
             return Task.FromResult(View(model));
@@ -83,11 +62,11 @@ namespace eLearnEnglish_ASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                /*if (videoModel.CoverPhoto != null)
+                if (videoModel.CoverPhoto != null)
                 {
-                    string folder = "video/cover/";
+                    string folder = "images/video/";
                     videoModel.CoverImageUrl = await UploadImage(folder, videoModel.CoverPhoto);
-                }*/
+                }
 
 
                 int id = await _videoRepository.AddNewVideo(videoModel);
@@ -97,13 +76,39 @@ namespace eLearnEnglish_ASP.Controllers
                 }
             }
 
-            //замена на уровне view
-            /* ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id", "Name");*/
+            return View();
+        }
+        public Task<ViewResult> EditVideo(bool isSuccess = false, int videoId = 0)
+        {
+            var model = new VideoModel();
+
+            ViewBag.IsSuccess = isSuccess;
+            ViewBag.EditVideoId = videoId;
+            return Task.FromResult(View(model));
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditVideo(VideoModel videoModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (videoModel.CoverPhoto != null)
+                {
+                    string folder = "images/video/";
+                    videoModel.CoverImageUrl = await UploadImage(folder, videoModel.CoverPhoto);
+                }
+
+
+                int id = await _videoRepository.AddNewVideo(videoModel);
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(AddNewVideo), new { isSuccess = true, videoId = id });
+                }
+            }
 
             return View();
         }
 
-        
+
 
 
 

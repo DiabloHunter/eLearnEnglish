@@ -31,7 +31,7 @@ namespace eLearnEnglish_ASP.Repository
                 UpdatedOn = DateTime.UtcNow,
                 CoverImageUrl = model.CoverImageUrl,
                 VideoUrl = model.VideoUrl,
-                
+
             };
 
 
@@ -39,6 +39,34 @@ namespace eLearnEnglish_ASP.Repository
             await _context.SaveChangesAsync();
 
             return newVideo.Id;
+        }
+        public async Task<int> EditVideo(VideoModel model)
+        {
+            var newVideo = new Video()
+            {
+                CreatedOn = DateTime.UtcNow,
+                Description = model.Description,
+                Title = model.Title,
+                Difficulty = model.Difficulty,
+                UpdatedOn = DateTime.UtcNow,
+                CoverImageUrl = model.CoverImageUrl,
+                VideoUrl = model.VideoUrl,
+
+            };
+
+
+            await _context.Video.AddAsync(newVideo);
+            await _context.SaveChangesAsync();
+
+            return newVideo.Id;
+        }
+        public async Task<List<VideoModel>> GetVideo()
+        {
+            return await _context.Video.Select(x => new VideoModel()
+            {
+                Id = x.Id,
+                Title = x.Title
+            }).ToListAsync();
         }
 
         public async Task<List<VideoModel>> GetAllVideo()

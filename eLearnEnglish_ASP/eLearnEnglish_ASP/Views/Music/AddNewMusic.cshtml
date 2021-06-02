@@ -1,7 +1,7 @@
 ﻿@{
-    ViewData["Title"] = "Add new video";
+    ViewData["Title"] = "Add new music";
 }
-@model VideoModel
+@model MusicModel
 
 <div class="container">
     <h3 class="display-4">Add new video</h3>
@@ -10,7 +10,7 @@
     {
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Congratulations</strong> You have added new video successfully. <br />
-            Click <a asp-controller="Video" asp-action="GetVideo" asp-route-id="@ViewBag.NewVideoId">here</a> to view the details
+            Click <a asp-controller="Music" asp-action="GetMusic" asp-route-id="@ViewBag.NewMusicId">here</a> to view the details
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -22,11 +22,11 @@
         </div>
     </div>
 
-    <form method="post" enctype="multipart/form-data" asp-action="AddNewVideo" asp-controller="Video">
+    <form method="post" enctype="multipart/form-data" asp-action="AddNewMusic" asp-controller="Music">
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-       
+
 
         <div class="form-group">
             <label asp-for="Title"></label>
@@ -49,6 +49,11 @@
             <span asp-validation-for="Difficulty" class="text-danger"></span>
         </div>
         <div class="form-group">
+            <label asp-for="Genre"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
             <label asp-for="CoverPhoto"></label>
             <div class="custom-file">
                 <input asp-for="CoverPhoto" class="custom-file-input" id="customFile">
@@ -57,9 +62,9 @@
             <span asp-validation-for="CoverPhoto" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="VideoUrl"></label>
-            <input asp-for="VideoUrl" class="form-control" />
-            <span asp-validation-for="VideoUrl" class="text-danger"></span>
+            <label asp-for="MusicUrl"></label>
+            <input asp-for="MusicUrl" class="form-control" />
+            <span asp-validation-for="MusicUrl" class="text-danger"></span>
         </div>
         <div class="form-group">
             <input type="submit" value="Add video" class="btn btn-primary" />

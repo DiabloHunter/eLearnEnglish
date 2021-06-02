@@ -49,6 +49,7 @@ namespace eLearnEnglish_ASP.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CoverImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -82,7 +83,11 @@ namespace eLearnEnglish_ASP.Migrations
                     Exprassion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WordTranslation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Example = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExampleTranslation = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ExampleTranslation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Wrong1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Wrong2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Wrong3 = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

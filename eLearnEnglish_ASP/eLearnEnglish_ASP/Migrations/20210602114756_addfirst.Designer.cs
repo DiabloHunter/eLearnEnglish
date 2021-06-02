@@ -10,7 +10,7 @@ using eLearnEnglish_ASP.Data;
 namespace eLearnEnglish_ASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210528130640_addfirst")]
+    [Migration("20210602114756_addfirst")]
     partial class addfirst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -217,6 +217,9 @@ namespace eLearnEnglish_ASP.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CoverImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -262,6 +265,9 @@ namespace eLearnEnglish_ASP.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Difficulty")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Example")
                         .HasColumnType("nvarchar(max)");
 
@@ -272,6 +278,15 @@ namespace eLearnEnglish_ASP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WordTranslation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wrong1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wrong2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wrong3")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
