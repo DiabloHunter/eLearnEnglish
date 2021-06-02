@@ -17,12 +17,14 @@ namespace eLearnEnglish_ASP.Controllers
 {
     public class VideoController : Controller
     {
+        private readonly ApplicationDbContext _context = null;
         private readonly IVideoRepository _videoRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment = null;
 
-        public VideoController(IVideoRepository videoRepository,
+        public VideoController(ApplicationDbContext context, IVideoRepository videoRepository,
             IWebHostEnvironment webHostEnvironment)
         {
+            _context = context;
             _videoRepository = videoRepository;
             _webHostEnvironment = webHostEnvironment;
         }
@@ -41,16 +43,31 @@ namespace eLearnEnglish_ASP.Controllers
             return View(data);
         }
 
-
-
+        [HttpGet]
+        public async Task<IActionResult> EditVideo(string title="2")
+        {
+            if (title != null)
+            {
+                Video video = await _context.Video.FirstOrDefaultAsync(p => p.Title == title);
+                if (video != null)
+                    return View(video);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditVideo(Video video)
+        {
+            _context.Video.Update(video);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
 
         public List<VideoModel> SearchVideo(string title)
         {
             return _videoRepository.SearchVideo(title);
         }
-        [Authorize]
-        public async Task<ViewResult> AddNewVideo(bool isSuccess = false, int videoId = 0)
+        public Task<ViewResult> AddNewVideo(bool isSuccess = false, int videoId = 5)
         {
             var model = new VideoModel();
 
@@ -58,19 +75,19 @@ namespace eLearnEnglish_ASP.Controllers
             /*ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id","Name");*/
 
             ViewBag.IsSuccess = isSuccess;
-            ViewBag.VideoId = videoId;
-            return View(model);
+            ViewBag.NewVideoId = videoId;
+            return Task.FromResult(View(model));
         }
         [HttpPost]
         public async Task<IActionResult> AddNewVideo(VideoModel videoModel)
         {
             if (ModelState.IsValid)
             {
-                if (videoModel.CoverPhoto != null)
+                /*if (videoModel.CoverPhoto != null)
                 {
                     string folder = "video/cover/";
                     videoModel.CoverImageUrl = await UploadImage(folder, videoModel.CoverPhoto);
-                }
+                }*/
 
 
                 int id = await _videoRepository.AddNewVideo(videoModel);
@@ -85,6 +102,11 @@ namespace eLearnEnglish_ASP.Controllers
 
             return View();
         }
+
+        
+
+
+
 
         private async Task<string> UploadImage(string folderPath, IFormFile file)
         {

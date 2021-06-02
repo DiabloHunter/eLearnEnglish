@@ -12,6 +12,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a class="dropdown-item" asp-action="ManageSiteData" asp-controller="Home">Manage site data</a>
+                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Manage users data</a>
+                }
                 <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
             </div>
         </li>
