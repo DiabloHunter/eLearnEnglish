@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eLearnEnglish_ASP", "eLearnEnglish_ASP\eLearnEnglish_ASP.csproj", "{97EDB98E-E380-4ED8-B0CC-A13F6EE85D40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eLearnEnglish_ASP", "eLearnEnglish_ASP\eLearnEnglish_ASP.csproj", "{97EDB98E-E380-4ED8-B0CC-A13F6EE85D40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quizaldo.Common", "Quizaldo.Common\Quizaldo.Common.csproj", "{3B90E67A-7DA7-49CC-9A27-93E850666F0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quizaldo.Data", "Quizaldo.Data\Quizaldo.Data.csproj", "{A16A4F15-B194-4552-BD8B-4915578E822B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quizaldo.Models", "Quizaldo.Models\Quizaldo.Models.csproj", "{B430D924-E107-4186-8CFD-D0530271BEC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quizaldo.Services", "Quizaldo.Services\Quizaldo.Services.csproj", "{629EE527-98B6-440B-93C0-2709A054EE55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quizaldo.Tests", "Quizaldo.Tests\Quizaldo.Tests.csproj", "{5BA82C95-17EF-4B75-8B69-AC9BF6BEE18B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{97EDB98E-E380-4ED8-B0CC-A13F6EE85D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97EDB98E-E380-4ED8-B0CC-A13F6EE85D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97EDB98E-E380-4ED8-B0CC-A13F6EE85D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B90E67A-7DA7-49CC-9A27-93E850666F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B90E67A-7DA7-49CC-9A27-93E850666F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B90E67A-7DA7-49CC-9A27-93E850666F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B90E67A-7DA7-49CC-9A27-93E850666F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A16A4F15-B194-4552-BD8B-4915578E822B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A16A4F15-B194-4552-BD8B-4915578E822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A16A4F15-B194-4552-BD8B-4915578E822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A16A4F15-B194-4552-BD8B-4915578E822B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B430D924-E107-4186-8CFD-D0530271BEC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B430D924-E107-4186-8CFD-D0530271BEC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B430D924-E107-4186-8CFD-D0530271BEC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B430D924-E107-4186-8CFD-D0530271BEC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{629EE527-98B6-440B-93C0-2709A054EE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{629EE527-98B6-440B-93C0-2709A054EE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{629EE527-98B6-440B-93C0-2709A054EE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{629EE527-98B6-440B-93C0-2709A054EE55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BA82C95-17EF-4B75-8B69-AC9BF6BEE18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BA82C95-17EF-4B75-8B69-AC9BF6BEE18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BA82C95-17EF-4B75-8B69-AC9BF6BEE18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BA82C95-17EF-4B75-8B69-AC9BF6BEE18B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -340,3 +340,4 @@ D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\n
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Video\AddNewVideo.cshtml.g.cs
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Video\EditVideo.cshtml.g.cs
 D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Music\AddNewMusic.cshtml.g.cs
+D:\projects\C#\ASP\eLearnEnglish\eLearnEnglish_ASP\eLearnEnglish_ASP\obj\Debug\net5.0\Razor\Views\Vocabulary\GetAllUserWords.cshtml.g.cs

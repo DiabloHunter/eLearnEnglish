@@ -25,8 +25,28 @@ namespace eLearnEnglish_ASP.Repository
                 Exprassion = x.Exprassion,
                 WordTranslation = x.WordTranslation,
                 Example = x.Example,
-                ExampleTranslation = x.ExampleTranslation
+                ExampleTranslation = x.ExampleTranslation,
+                Difficulty = x.Difficulty,
+                Wrong1 = x.Wrong1,
+                Wrong2 = x.Wrong2,
+                Wrong3 = x.Wrong3
             }).ToListAsync();
+        }
+        public async Task<List<WordModel>> GetAllWord()
+        {
+            return await _context.Word
+                  .Select(word => new WordModel()
+                  {
+                      Id = word.Id,
+                      Exprassion = word.Exprassion,
+                      WordTranslation = word.WordTranslation,
+                      Example = word.Example,
+                      ExampleTranslation = word.ExampleTranslation,
+                      Difficulty = word.Difficulty,
+                      Wrong1 = word.Wrong1,
+                      Wrong2 = word.Wrong2,
+                      Wrong3 = word.Wrong3
+                  }).ToListAsync();
         }
     }
 }
