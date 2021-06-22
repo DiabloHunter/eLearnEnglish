@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eLearnEnglish.Models;
 using Microsoft.EntityFrameworkCore;
 using Quizaldo.Common.ServiceModels;
 using Quizaldo.Data;
@@ -146,9 +147,9 @@ namespace Quizaldo.Tests.Service
             Assert.True(currentQuiz.Id == id);
         }
 
-        private QuizaldoUser GetTestUser()
+        private User GetTestUser()
         {
-            return new QuizaldoUser()
+            return new User()
             {
                 UserName = "testUser"
             };

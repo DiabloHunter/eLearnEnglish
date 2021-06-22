@@ -24,9 +24,4 @@
     <ProjectReference Include="..\eLearnEnglish.Services\eLearnEnglish.Services.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\music\" />
-  </ItemGroup>
-
 </Project>
