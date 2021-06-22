@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "All cources";
+}
+
+
+
+
+<div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4">
+        <div class="card">
+            <img src="/images/manage/music.jpg" class="card-img-top" alt="upper">
+            <div class="card-body">
+                <h5 class="card-title" align="center">Add new music</h5>
+                <a class="btn btn-primary" asp-controller="Music" asp-action="AddNewMusic">Add</a>
+                <a class="btn btn-primary" asp-controller="Music" asp-action="EditMusic">Edit</a>
+                <a class="btn btn-danger" asp-controller="Music" asp-action="AddNewMusic">Delete</a>
+               
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <img src="/images/manage/video.jpg" class="card-img-top" alt="upper">
+            <div class="card-body">
+                <h5 class="card-title" align="center">Add new video</h5>
+                <a class="btn btn-primary" asp-controller="Video" asp-action="AddNewVideo">Add</a>
+                <a class="btn btn-primary" asp-controller="Video" asp-action="EditVideo">Edit</a>
+                <a class="btn btn-danger" asp-controller="Video" asp-action="AddNewVideo">Delete</a>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <img src="/images/manage/word.jpg" class="card-img-top" alt="upper">
+            <div class="card-body">
+                <h5 class="card-title" align="center">Add new word</h5>
+                <a class="btn btn-primary" asp-controller="Word" asp-action="AddNewWord">Add</a>
+                <a class="btn btn-primary" asp-controller="Word" asp-action="EditWord">Edit</a>
+                <a class="btn btn-danger" asp-controller="Word" asp-action="AddNewWord">Delete</a>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <img src="/images/manage/sentence.jpg" class="card-img-top" alt="upper">
+            <div class="card-body">
+                <h5 class="card-title" align="center">Add new sentence</h5>
+                <a class="btn btn-primary" asp-controller="Sentence" asp-action="AddNewSentence">Add</a>
+                <a class="btn btn-primary" asp-controller="Sentence" asp-action="EditSentence">Edit</a>
+                <a class="btn btn-danger" asp-controller="Sentence" asp-action="AddNewSentence">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

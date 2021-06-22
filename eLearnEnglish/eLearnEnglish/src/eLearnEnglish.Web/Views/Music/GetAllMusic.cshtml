@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "All music";
+}
+@model IEnumerable<AllMusicViewModel>
+
+
+
+<div class="container">
+    <h3 class="display-4"> All music view</h3>
+    <div class="row">
+
+        @foreach (var music in Model)
+        {
+            <div class="col-md-4">
+                <partial name="_musicThumbnail" model="@music" />
+
+            </div>
+        }
+
+
+    </div>
+</div>

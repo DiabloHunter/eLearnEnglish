@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Welcome to eLearnEnglish</h1>
+
+        <p class="lead text-muted">
+
+            Grammar, tasks, vocabulary, books,
+            videos - all this awaits you in eLearnEnglish.
+            Join our community of people who like English!
+
+        </p>
+
+    </div>
+</section>
+
+
+<div class="py-5 bg-light">
+    <div class="container">
+        <h1>Music</h1>
+        @await Component.InvokeAsync("DownMusic", new { difficulty = "", count = 3 })
+
+
+
+    </div>
+</div>
+
+<div class="py-5 bg-light">
+
+    <div class="container">
+        <h1>Video</h1>
+        @await Component.InvokeAsync("DownVideo", new { difficulty = "", count = 3 })
+        @*<vc:top-books count="3"></vc:top-books>*@
+
+    </div>
+</div>
+
+

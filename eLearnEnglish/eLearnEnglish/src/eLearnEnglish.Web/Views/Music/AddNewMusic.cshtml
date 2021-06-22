@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Add new music";
+}
+@model AllMusicViewModel
+
+<div class="container">
+    <h3 class="display-4">Add new video</h3>
+    <hr />
+    @if (ViewBag.IsSuccess == true)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Congratulations</strong> You have added new music successfully. <br />
+            Click <a asp-controller="Music" asp-action="GetMusic" asp-route-id="@ViewBag.NewMusicId">here</a> to view the details
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" id="myLoader" style="display:none">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" asp-action="AddNewMusic" asp-controller="Music">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Difficulty"></label>
+            <input asp-for="Difficulty" class="form-control" />
+            <span asp-validation-for="Difficulty" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Genre"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CoverPhoto"></label>
+            <div class="custom-file">
+                <input asp-for="CoverPhoto" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <span asp-validation-for="CoverPhoto" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MusicUrl"></label>
+            <input asp-for="MusicUrl" class="form-control" />
+            <span asp-validation-for="MusicUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add music" class="btn btn-primary" />
+        </div>
+
+    </form>
+</div>
+

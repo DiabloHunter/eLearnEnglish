@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Music detail " + Model.Title;
+}
+@model AllMusicViewModel
+
+
+<div class="container">
+    <h3 class="display-4">Music details</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <iframe width="500" height="315" src=@Model.MusicUrl
+                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                    clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Title</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="label label-primary">By: </span>
+                    <span class="monospaced">@Model.Author</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="description">
+                        @Model.Description
+                    </p>
+                </div>
+            </div>
+
+            @*<div class="row">
+                    <div class="col-md-4">
+                        <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                            Watch now
+                        </a>
+                    </div>
+                </div>*@
+
+            <hr />
+
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-weight-bold">Genre - </span> @Model.Genre</li>
+                <li class="list-group-item"><span class="font-weight-bold">Difficulty - </span> @Model.Difficulty</li>
+            </ul>
+
+
+            
+            <hr />
+
+            @if (User.IsInRole("Admin"))
+             {
+                 <a class="btn btn-danger" asp-controller="Music" asp-action="DeleteMusic" asp-route-id="@Model.Id">Delete Music</a>
+             }
+
+        </div>
+    </div>
+
+
+
+    <hr />
+
+
+</div>
+
+<div class="py-5 bg-light">
+    <div class="container">
+
+
+        @await Component.InvokeAsync("DownMusic", new { difficulty = Model.Difficulty, count = 6 })
+
+        @*<vc:top-books count="3"></vc:top-books>*@
+
+    </div>
+</div>
+

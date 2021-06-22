@@ -1,0 +1,52 @@
+﻿<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="~/images/logo.png" width="30" height="30" asp-append-version="true" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Main">eLearnEnglish</a>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav">
+                    <partial name="_LoginPartial" />
+                </ul>
+                <ul class="navbar-nav flex-grow-1">
+                    @if (User.IsInRole("Admin"))
+                    {
+
+        <li class="nav-item dropdown">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="CreateQuiz">Create test</a>
+        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Question" asp-action="AddQuestion">Add question</a>
+                        </li>}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Test</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="AllCources">Cources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="AllCources">Vocabulary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Video" asp-action="GetAllVideo">Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Music" asp-action="GetAllMusic">Music</a>
+                    </li>
+
+
+
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
